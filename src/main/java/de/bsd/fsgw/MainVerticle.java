@@ -15,8 +15,7 @@ public class MainVerticle extends AbstractVerticle {
   // Label on dust data
   private static final String TYP_FS = "{typ=\"fs\"}";
 
-  @Override
-  public void start(Future<Void> fut) {
+  public void start(Promise<Void> fut) {
 
     Map<String,String> values = new HashMap<>();
 
@@ -95,7 +94,7 @@ public class MainVerticle extends AbstractVerticle {
     // Create the HTTP server and pass the "accept" method to the request handler.
     vertx
         .createHttpServer()
-        .requestHandler(router::accept)
+        .requestHandler(router)
         .listen(
             // Retrieve the port from the configuration,
             // default to 10080.
